@@ -5,8 +5,7 @@
   "main": "dist/polygon-utils.js",
   "types": "polygon-utils.d.ts",
   "scripts": {
-    "dev": "webpack --config ./webpack.config.js --watch --mode=development",
-    "build": "rm -r dist/ || true && webpack --config ./webpack.config.js --mode=development",
+    "build": "rm -r dist/ || true && tsc",
     "compile": "rm -r dist/ || true && npm run lint && npm run test && npm run build",
     "lint": "tslint --project ./ -c tslint.json",
     "test": "jest --env=node --colors --coverage test",
@@ -56,19 +55,16 @@
     },
     "globals": {
       "ts-jest": {
-        "tsConfigFile": "tsconfig.test.json"
+        "tsConfig": "tsconfig.test.json"
       }
     }
   },
   "devDependencies": {
     "@types/jest": "23.3.10",
-    "awesome-typescript-loader": "5.2.1",
     "jest": "23.6.0",
     "ts-jest": "23.10.5",
     "tslint": "5.11.0",
     "tslint-config-airbnb": "5.11.1",
-    "typescript": "3.2.1",
-    "webpack": "4.26.1",
-    "webpack-cli": "3.1.2"
+    "typescript": "3.2.1"
   }
 }
