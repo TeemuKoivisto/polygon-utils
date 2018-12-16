@@ -1,4 +1,4 @@
-# polygon-utils
+# polygon-utils [![npm version](https://badge.fury.io/js/polygon-utils.svg)](https://badge.fury.io/js/polygon-utils)
 Library for calculation of polygon centroid and bounding box area.
 
 Motive for this tiny library was:
