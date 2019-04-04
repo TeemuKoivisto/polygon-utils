@@ -4,7 +4,7 @@
 /**
  * Calculates the centroid of a polygon from a list of [x,y] coordinates.
  * @param vertices List of [x,y] coordinates.
- * @return Returns the centroid as [x,y] coordinates eg. [23.5960126585797, 63.19228972849327].
+ * @return Centroid as [x,y] coordinates eg. [23.5960126585797, 63.19228972849327].
  */
 export function centroid(vertices: number[][]) : [number, number] {
   const centroid = [0, 0]
@@ -34,6 +34,24 @@ export function centroid(vertices: number[][]) : [number, number] {
 }
 
 /**
+ * Calculates a weighted average of polygons' centroids.
+ * A reasonable estimate for the centroid instead of using the first centroid of the list.
+ * @param polygons List of polygons.
+ * @return Centroid as [x,y] coordinates eg. [23.5960126585797, 63.19228972849327].
+ */
+export function centroidMultiPolygon(polygons: number[][][][]) : [number, number] {
+  const polygonsCount = polygons.length
+  return polygons.reduce(
+    (acc: [number, number], polygon: number[][][]) => {
+      const c = centroid(polygon[0])
+      acc[0] += c[0] / polygonsCount
+      acc[1] += c[1] / polygonsCount
+      return acc
+    },
+    [0, 0] as [number, number])
+}
+
+/**
  * Calculates the bounding box area of a polygon.
  * @param vertices List of [x,y] coordinates.
  * @return Area as floating number eg. 0.21966561631020753.
@@ -52,4 +70,13 @@ export function boundingBoxArea(vertices: number[][]) : number {
     if (y < minY) minY = y
   }
   return (maxX - minX) * (maxY - minY)
+}
+
+/**
+ * Convenience method to compute the polygon area for a MultiPolygon shape.
+ * @param polygons List of polygons.
+ * @return Area as a floating number eg. 5.20340858889998636.
+ */
+export function boundingBoxAreaMultiPolygon(polygons: number[][][][]) : number {
+  return polygons.reduce((acc: number, polygon: number[][][]) => acc + boundingBoxArea(polygon[0]), 0)
 }
