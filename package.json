@@ -1,6 +1,6 @@
 {
   "name": "polygon-utils",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Library for calculation of polygon centroid and bounding box area.",
   "main": "dist/polygon-utils.js",
   "types": "dist/polygon-utils.d.ts",
